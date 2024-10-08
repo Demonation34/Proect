@@ -14,7 +14,7 @@ const scene = document.getElementById('scene');
 E1="1";
 E2="2";
 E3="3";
-
+E4="4";
 // Для каждого элемента с классом butn добавляем обработчики событий
 buttons.forEach(button => {
     // Когда нажата кнопка мыши (mousedown)
