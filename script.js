@@ -47,9 +47,9 @@ burgerMenu.addEventListener('click', () => {
         // Добавляем задержку 500 миллисекунд перед появлением текста
         setTimeout(() => {
             menuText.innerHTML = 
-            `<h2 class="home butn "><a href="main.html">Главное меню</a></h2>
+            `<h2 class="home butn "><a href="index.html">Главное меню</a></h2>
             <h2 class="home butn "><a href="img0.html">Иллюстрация</a></h2>
-            <h2 class="back butn"><a href="main.html">Назад</a></h2>`;
+            <h2 class="back butn"><a href="index.html">Назад</a></h2>`;
         }, 200); // Задержка 0.5 секунды
     } else {
         menuText.innerHTML = '';
