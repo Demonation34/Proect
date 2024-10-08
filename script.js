@@ -110,7 +110,7 @@ function imgs_add() {
 
     // Генерация путей к изображениям от 1 до 29
     for (let i = 1; i <= 23; i++) {
-        images.push(`imgs/items/${i}.png`);
+        images.push(`imgs/${i}.png`);
     }
 
     // Добавляем контейнеры и изображения в инвентарь
@@ -143,7 +143,7 @@ start.addEventListener('click', () => {
     scene.classList.toggle('hidden');
 
     scene.style.backgroundPosition = 'center';
-    scene.style.backgroundImage = 'url("imgs/Items/human.png")';
+    scene.style.backgroundImage = 'url("imgs/human.png")';
     scene.style.backgroundSize = 'contain';
     scene.style.backgroundRepeat = 'no-repeat';
     scene.style.height = '100%';
