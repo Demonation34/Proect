@@ -1,0 +1,52 @@
+.main-content {
+    display: flex;
+    justify-content: center; /* Центрирует содержимое по горизонтали */
+    align-items: center; /* Центрирует содержимое по вертикали */
+}
+
+.image-container {
+    display: flex; /* Позволяет располагать изображения в строку */
+    gap: 50px; /* Расстояние между изображениями */
+}
+
+.image-item {
+    text-align: center;
+    margin-top: -70px;
+    width: 300px; /* Ширина изображения */
+    height: 400px; /* Высота изображения */
+    object-fit: cover; /* Обеспечивает корректное масштабирование изображений */
+}
+
+.pdf_c {
+    margin-top: -350px;
+    height: 350px;
+    clip-path: inset(0 0 30px 0);
+    transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+
+/* .pdf_c:hover {
+    transform: scale(1.5);  
+    width: auto;
+    height: 500px;
+    z-index: 1000;  
+    object-fit: cover;  
+}
+
+.pdf_c {
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 300px; 
+    height: 400px; 
+    z-index: 1000; 
+    transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); 
+    background: white;
+} */
+
+
+.pdf_c:hover {
+    transform: translate(-20%, -5%) scale(1.2); 
+    width: 400px;
+    height: 500px;
+}

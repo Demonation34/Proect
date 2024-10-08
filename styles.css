@@ -1,0 +1,293 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none; /* Убирает подчеркивание */
+    color: inherit; /* Наследует цвет текста от родительского элемента */
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+body {
+    cursor: url('dw.png'), auto;
+    user-select: none; /* Для современных браузеров */
+    -webkit-user-select: none; /* Для Safari */
+    -moz-user-select: none; /* Для Firefox */
+    -ms-user-select: none; /* Для IE и Edge */
+    
+    
+}
+.draggable:active {
+    cursor: url('dw.png'), auto; /* Курсор "захваченной руки" во время перетаскивания */
+}
+body {
+    background-color: #76c0ff; /* Голубой фон */
+}
+* {
+    cursor: url('dw.png'), auto; /* Применяем пользовательский курсор для всех pointer */
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Боковая панель */
+.sidebar {
+    background-color: #e92e3c; /* Красная боковая панель */
+    width: 5vw; /* 5% от ширины вьюпорта */
+    padding: 1.95vh; /* 15px в 768px (около 1.95vh) */
+    position: fixed;
+    height: 100vh;
+    color: white;
+    z-index: 2;
+    transition: width 0.5s ease; /* Анимация изменения ширины */
+}
+
+.menu-text {
+    margin-top: 1.3vh; /* 10px в 768px (около 1.3vh) */
+}
+
+h2 {
+    padding: 1.3vh; /* 10px в 768px (около 1.3vh) */
+}
+
+/* Когда боковая панель активна, увеличиваем её ширину */
+.sidebar.active {
+    width: 22.5vw; /* 22.5% от ширины вьюпорта */
+}
+
+/* Основной контент */
+.main-content {
+    justify-content: center;
+    margin-left: 7.3vw; /* 100px в 1366px (около 7.3vw) */
+    flex-grow: 1;
+    padding: 2vh; /* 20px в 768px (около 2.6vh) */
+    color: white;
+    font-size: small;
+    z-index:0;
+}
+
+/* Нижняя панель */
+.bottom-bar {
+    left: 5vw; /* 5% от ширины вьюпорта */
+    display: flex;
+    width: 95vw; /* 95% от ширины вьюпорта */
+    height: 6.5vh; /* 50px в 768px (около 6.5vh) */
+    position: fixed;
+    bottom: 0;
+}
+
+.blue-section {
+    background-color: #21539a; /* Синяя часть 70% */
+    width: 70vw; /* 70% от ширины вьюпорта */
+    display: flex;
+    justify-content: space-between; /* Разместить элементы по противоположным сторонам */
+    color: white;
+}
+
+span {
+    margin-top: 1.3vh; /* 10px в 768px (около 1.3vh) */
+    margin-left: 2.2vw; /* 30px в 1366px (около 2.2vw) */
+    font-size: 3.9vh; /* 30px в 768px (около 3.9vh) */
+    margin-right: 0.73vw; /* 10px в 1366px (около 0.73vw) */
+}
+
+label {
+    font-size: 2.6vh; /* 20px в 768px (около 2.6vh) */
+    color: #000;
+}
+
+button {
+    font-size: 2.6vh; /* 20px в 768px (около 2.6vh) */
+}
+
+input {
+    height: 3.9vh; /* 30px в 768px (около 3.9vh) */
+    width: 14.6vw; /* 200px в 1366px (около 14.6vw) */
+}
+
+.icon {
+    height: 6.5vh; /* 50px в 768px (около 6.5vh) */
+    width: auto;
+    gap: 0.3vw; /* Расстояние между иконками */
+}
+
+.red-section {
+    background-color: #e92e3c; /* Красная часть 30% */
+    width: 30vw; /* 30% от ширины вьюпорта */
+    display: flex;
+    justify-content: start;
+    text-align: center;
+    color: white;
+}
+
+/* Бургер-меню */
+/* Контейнер для бургер-меню */
+.burger-icon {
+    width: 2.9vw; /* 40px в 1366px (около 2.9vw) */
+    height: 2.9vw; /* 40px в 1366px (около 2.9vw) */
+    background-color: #e92e3c; /* Красный фон */
+    border-radius: 0.5vw; /* 5px в 1366px (около 0.37vw) */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.65vh; /* 5px в 768px (около 0.65vh) */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Плавный переход */
+}
+
+/* Линии бургер-меню */
+.line {
+    width: 100%;
+    height: 0.52vh; /* 4px в 768px (около 0.52vh) */
+    background-color: white;
+    border-radius: 0.15vw; /* 2px в 1366px (около 0.15vw) */
+    transition: all 0.3s ease;
+}
+
+/* Изменения при активации меню (класс активного состояния) */
+.burger-icon.active_krest .line:nth-child(1) {
+    transform: rotate(45deg) translate(1.02vw, 0.4vh); /* Изменение с учетом новых единиц */
+}
+
+.burger-icon.active_krest .line:nth-child(2) {
+    opacity: 0; /* Прячем среднюю линию */
+}
+
+.burger-icon.active_krest .line:nth-child(3) {
+    transform: rotate(-45deg) translate(1.02vw, -0.4vh); /* Изменение с учетом новых единиц */
+}
+
+/* Оверлей, который будет затемнять страницу */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* 100% от ширины вьюпорта */
+    height: 100vh; /* 100% от высоты вьюпорта */
+    background-color: rgba(0, 0, 0, 0.5); /* Черный полупрозрачный цвет */
+    opacity: 0; /* По умолчанию невидим */
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 1; /* Располагаем выше контента */
+}
+
+body.menu-active .overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Контент страницы */
+.container {
+    position: relative;
+    z-index: 1000; /* Контент под оверлеем */
+}
+
+/* Основной стиль кнопки */
+.butn {
+    border: none;
+    
+    transition: transform 0.2s ease; /* Плавный переход при изменении размеров */
+}
+
+
+/* Уменьшение размера на 5% при наведении */
+.butn:hover {
+    transform: scale(0.95); /* Уменьшение размера на 5% при наведении */
+}
+
+/* Уменьшение на 10% при нажатии */
+.butn:active{
+    transform: scale(0.90); /* Уменьшение размера на 10% при нажатии */
+}
+
+.scene {
+    background-position: center;
+    background-image: url(imgs/screen1.png);
+    background-size: 60%;
+    background-repeat: no-repeat;
+    height: 100vh; /* 100% от высоты вьюпорта */
+    overflow: visible;
+}
+
+.draggable {
+    cursor: grab;       /* Иконка курсора */
+    width: 3.7vw; /* 50px в 1366px (около 3.7vw) */
+    height: 3.7vw; /* 50px в 1366px (около 3.7vw) */
+    object-fit: cover; /* Чтобы изображение корректно вписывалось */
+    border-radius: 0.37vw; /* 5px в 1366px (около 0.37vw) */
+}
+
+.hidden {
+    display: none;
+}
+
+#toggleInventory {
+    position: relative;
+    z-index: 1; /* Устанавливаем z-index для кнопки */
+}
+
+#inventory {
+    position: absolute;
+    z-index: 10; /* Inventory будет выше кнопки */
+    background-color: #21539a;
+    color: white;
+    padding: 1.3vh; /* 10px в 768px (около 1.3vh) */
+    top: 56vh; /* Чтобы блок не перекрывал кнопку */
+    left: 57vw; /* 10px в 1366px (около 0.73vw) */
+    border-radius: 0.37vw; /* 5px в 1366px (около 0.37vw) */
+    box-shadow: 0 0 1vh rgba(0, 0, 0, 0.5); /* Тень */
+}
+
+.inventory-header {
+    font-size: 2.3vh; /* 18px в 768px (около 2.3vh) */
+    margin-bottom: 1.3vh; /* 10px в 768px (около 1.3vh) */
+    display: inline;
+}
+
+.divider {
+    height: 0.13vh; /* 1px в 768px (около 0.13vh) */
+    background-color: black;
+    margin: 1.3vh; /* 10px в 768px (около 1.3vh) */
+}
+
+.containers {
+    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки одинаковой ширины */
+    gap: 1vw; /* Зазор между элементами */
+    max-height: 26vh; /* Ограничение высоты контейнера (например, 320px в 768px, около 34vh) */
+    overflow-y: auto; /* Прокрутка по вертикали при переполнении */
+    padding-right: 1vw; /* Отступ справа для красоты при скролле */
+    
+}
+
+.container-inv {
+    width: 3.7vw; /* 50px в 1366px (около 3.7vw) */
+    height: 3.7vw; /* 50px в 1366px (около 3.7vw) */
+    background-color: #1d4886; /* Цвет контейнера */
+    border-radius: 0.5vw; /* 5px в 1366px (около 0.37vw) */
+    margin: 0.5vh; /* 5px в 768px (около 0.65vh) */
+    box-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.3); /* Тень */
+    overflow: visible;
+}
+
+.close-btn {
+    font-size: 4.5vh; /* 35px в 768px (около 4.5vh) */
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    right: 0; /* Разместить крестик в правом верхнем углу */
+    position: absolute;
+    top: -1.5vh; /* Разместить крестик над контейнером */
+    padding: 0.65vh; /* 5px в 768px (около 0.65vh) */
+}

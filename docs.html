@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Текущий проект</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="doc_style.css">
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.7.570/build/pdf.min.js"></script>
+
+</head>
+<body>
+    <!-- Боковая панель -->
+    <div class="sidebar" id="sidebar"> 
+
+        <!-- Иконка бургер-меню -->
+        <div class="burger-icon butn" id="burgerMenu">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+        </div>
+
+        <div class="menu-text" id="menuText"></div>
+
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="container">
+
+        <!-- Контент -->
+        <div class="main-content">
+            <div class="scene hidden" id = "scene"></div>
+            <div id="inventory" class="hidden">
+                <!-- <div class="inventory-header">Инвентарь</div> 
+                <span id="closeInventory" class="close-btn">&times;</span>
+                <div class="divider"></div>
+                <div class="containers">
+                </div> -->
+            </div>
+            <div class="image-container">
+                <div class="image-item">
+                    <img src="imgs/doc.png" alt="doc 1" class="image-item">
+                    <canvas id="canvas1" class="pdf_c"></canvas>
+                </div>
+                <div class="image-item">
+                    <img src="imgs/doc.png" alt="doc 2" class="image-item">
+                    <canvas id="canvas2" class="pdf_c"></canvas>
+                </div>
+                <div class="image-item">
+                    <img src="imgs/doc.png" alt="doc 3" class="image-item">
+                    <canvas id="canvas3" class="pdf_c"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- Нижняя панель -->
+        <div class="bottom-bar">
+            <div class="blue-section">
+                <span><!-- Иллюстрация--></span>
+                <div>
+                    <img src="imgs/sound.png" class="icon butn" id="sound">
+                    <img src="imgs/inv.png" class="icon butn" id="toggleInventory">
+                </div>
+            </div>
+            <div class="red-section">
+                <a href="main.html"><img src="imgs/home.png" class="icon butn"></a>
+                <span class="home butn" onselectstart="return false" onmousedown="return false" ><a href="main.html">Главное меню</a></span>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+<script src="doc_js.js"></script>
+</html>

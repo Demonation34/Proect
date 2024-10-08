@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Текущий проект</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+</head>
+<body>
+    
+    <!-- Боковая панель -->
+    <div class="sidebar" id="sidebar"> 
+        
+
+        <!-- Иконка бургер-меню -->
+        <div class="burger-icon butn" id="burgerMenu">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+        </div>
+
+        <div class="menu-text" id="menuText"></div>
+
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="container">
+
+        <!-- Контент -->
+        <div class="main-content">
+            <div class="scene hidden" id = "scene"></div>
+            <div id="inventory" class="hidden">
+                <div class="inventory-header">Инвентарь</div> 
+                <span id="closeInventory" class="close-btn">&times;</span> <!-- Крестик -->
+                <div class="divider"></div>
+                <div class="containers">
+                </div>
+            </div>
+        </div>
+
+        <!-- Нижняя панель -->
+        <div class="bottom-bar">
+            
+            <div class="blue-section">
+                <span>Обучение</span>
+                <div>
+                    <img src="imgs/check.png" class="icon butn" id="check">
+                    <img src="imgs/sound.png" class="icon butn" id="sound">
+                    <img src="imgs/inv.png" class="icon butn" id="toggleInventory">
+                
+                </div>
+            </div>
+            <div class="red-section">
+                <a href="main.html"><img src="imgs/home.png" class="icon butn"></a>
+                <span class="start butn" id = "start" onselectstart="return false" onmousedown="return false" >Начать</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
