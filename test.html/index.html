@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop Example</title>
+    <style>
+        .draggable {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background-color: lightblue;
+            text-align: center;
+            line-height: 100px;
+            border: 1px solid #000;
+        }
+        #dropzone {
+            width: 300px;
+            height: 300px;
+            border: 2px dashed #000;
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="elements">
+        <div class="draggable" draggable="true" id="item1">Item 1</div>
+        <div class="draggable" draggable="true" id="item2">Item 2</div>
+        <div class="draggable" draggable="true" id="item3">Item 3</div>
+    </div>
+
+    <div id="dropzone">Drop items here</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
