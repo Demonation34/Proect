@@ -143,7 +143,7 @@ start.addEventListener('click', () => {
     scene.classList.toggle('hidden');
 
     scene.style.backgroundPosition = 'center';
-    scene.style.backgroundImage = 'url("/Proect/imgs/items/human.png")';
+    scene.style.backgroundImage = 'url("https://demonation34.github.io/Proect/imgs/items/human.png")';
     scene.style.backgroundSize = 'contain';
     scene.style.backgroundRepeat = 'no-repeat';
     scene.style.height = '100%';
