@@ -105,36 +105,52 @@ document.getElementById('closeInventory').addEventListener('click', function() {
 
 
 
-function imgs_add() {
+async function imgs_add() {
     const images = [];
+    let i = 1;
 
-    // Генерация путей к изображениям от 1 до 29
-    for (let i = 1; i <= 23; i++) {
-        images.push(`imgs/${i}.png`);
+    // Проверяем существование изображений в цикле
+    while (true) {
+        const imagePath = `imgs/${i}.png`;
+
+        // Проверка существования изображения
+        try {
+            const response = await fetch(imagePath, { method: 'HEAD' });
+            if (!response.ok) {
+                break; // Если изображение не существует, выходим из цикла
+            }
+            images.push(imagePath);
+        } catch (error) {
+            console.error(`Ошибка при проверке изображения: ${error}`);
+            break; // Прерываем цикл в случае ошибки
+        }
+
+        i++; // Переходим к следующему изображению
     }
 
     // Добавляем контейнеры и изображения в инвентарь
     images.forEach((image, index) => {
-
         try {
             // Создаем контейнер для изображения
-        const container = document.createElement('div');
-        container.className = 'container-inv';
+            const container = document.createElement('div');
+            container.className = 'container-inv';
 
-        const img = document.createElement('img');
+            const img = document.createElement('img');
             img.src = image;
             img.alt = `Item ${index + 1}`;
-            
-        // Добавляем изображение в контейнер
-        container.appendChild(img);
-        img.classList.add('draggable')
-        // Добавляем контейнер в секцию инвентаря
-        containersDiv.appendChild(container);
+
+            // Добавляем изображение в контейнер
+            container.appendChild(img);
+            img.classList.add('draggable');
+
+            // Добавляем контейнер в секцию инвентаря
+            containersDiv.appendChild(container);
         } catch (error) {
             console.error(`Произошла ошибка при добавлении изображения: ${error}`);
         }
     });
 }
+
 
 
 
