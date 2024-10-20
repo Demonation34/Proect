@@ -1,0 +1,1 @@
+chokidar "F:\Proect\Proect\index.html" -c "powershell -ExecutionPolicy Bypass -File F:\Proect\Proect\auto_commit.ps1"

@@ -10,17 +10,18 @@
 }
 
 .image-item {
-    text-align: center;
-    margin-top: -70px;
-    width: 300px; /* Ширина изображения */
-    height: 400px; /* Высота изображения */
-    object-fit: cover; /* Обеспечивает корректное масштабирование изображений */
+    margin-top: 5vh;
+    width: 24vw;
+    height: 77vh;
+    margin-left: 5vw;
 }
 
 .pdf_c {
-    margin-top: -350px;
-    height: 350px;
-    clip-path: inset(0 0 30px 0);
+    margin-top: -67vh;
+    height: 69vh;
+    width: 20.2vw;
+    margin-left: 7vw;
+    clip-path: inset(0 0 5vh 0);
     transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
 }
 
@@ -47,6 +48,7 @@
 
 .pdf_c:hover {
     transform: translate(-20%, -5%) scale(1.2); 
-    width: 400px;
-    height: 500px;
+    width: auto;
+    height: 77vh;
+    margin-top: -71vh;
 }
