@@ -27,7 +27,38 @@
     <div class="overlay" id="overlay"></div>
 
     <div class="container">
-
+        <div class="butcan">
+        <button class="butcan1" type="button">Верный документ</button>
+        <script>
+            // Находим кнопку по классу
+            const button = document.querySelector('.butcan1');
+    
+            // Добавляем обработчик события click
+            button.addEventListener('click', function() {
+                alert('Верно');
+            });
+        </script>
+        <button class="butcan2" type="button">Верный документ</button>
+        <script>
+            // Находим кнопку по классу
+            const button2 = document.querySelector('.butcan2');
+    
+            // Добавляем обработчик события click
+            button2.addEventListener('click', function() {
+                alert('Неверно');
+            });
+        </script>
+        <button class="butcan3" type="button">Верный документ</button>
+        <script>
+            // Находим кнопку по классу
+            const button3 = document.querySelector('.butcan3');
+    
+            // Добавляем обработчик события click
+            button3.addEventListener('click', function() {
+                alert('Верно');
+            });
+        </script>
+    </div>
         <!-- Контент -->
         <div class="index-content">
             <div class="scene hidden" id = "scene"></div>
@@ -71,4 +102,11 @@
 </body>
 <script src="script.js"></script>
 <script src="doc_js.js"></script>
+<canvas id="canvas1"></canvas>
+<canvas id="canvas2"></canvas>
+<canvas id="canvas3"></canvas>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js"></script>
+
 </html>
