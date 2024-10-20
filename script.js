@@ -111,7 +111,7 @@ async function imgs_add() {
 
     // Проверяем существование изображений в цикле
     while (true) {
-        const imagePath = `imgs/${i}.png`;
+        const imagePath = `imgs/${i}.png?v=${new Date().getTime()}`; // Добавляем параметр для обхода кеширования
 
         // Проверка существования изображения
         try {
@@ -131,7 +131,6 @@ async function imgs_add() {
     // Добавляем контейнеры и изображения в инвентарь
     images.forEach((image, index) => {
         try {
-            // Создаем контейнер для изображения
             const container = document.createElement('div');
             container.className = 'container-inv';
 
@@ -139,17 +138,16 @@ async function imgs_add() {
             img.src = image;
             img.alt = `Item ${index + 1}`;
 
-            // Добавляем изображение в контейнер
             container.appendChild(img);
             img.classList.add('draggable');
 
-            // Добавляем контейнер в секцию инвентаря
             containersDiv.appendChild(container);
         } catch (error) {
             console.error(`Произошла ошибка при добавлении изображения: ${error}`);
         }
     });
 }
+
 
 
 
