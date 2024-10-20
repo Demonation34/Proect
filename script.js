@@ -104,53 +104,64 @@ document.getElementById('closeInventory').addEventListener('click', function() {
 });
 
 
-
-async function imgs_add() {
+function imgs_add() {
     const images = [];
     let i = 1;
 
-    // Проверяем существование изображений в цикле
-    while (true) {
-        const imagePath = `imgs/${i}.png`;
+    function loadNextImage() {
+        const image = new Image();
+        image.src = `imgs/${i}.png`;
 
-        // Проверка существования изображения
-        try {
-            const response = await fetch(imagePath, { method: 'HEAD' });
-            if (!response.ok) {
-                break; // Если изображение не существует, выходим из цикла
-            }
-            images.push(imagePath);
-        } catch (error) {
-            console.error(`Ошибка при проверке изображения: ${error}`);
-            break; // Прерываем цикл в случае ошибки
-        }
+        image.onload = function() {
+            images.push(image.src);
 
-        i++; // Переходим к следующему изображению
-    }
-
-    // Добавляем контейнеры и изображения в инвентарь
-    images.forEach((image, index) => {
-        try {
-            // Создаем контейнер для изображения
             const container = document.createElement('div');
             container.className = 'container-inv';
 
             const img = document.createElement('img');
-            img.src = image;
-            img.alt = `Item ${index + 1}`;
-
-            // Добавляем изображение в контейнер
-            container.appendChild(img);
+            img.src = image.src;
+            img.alt = `Item ${i}`;
             img.classList.add('draggable');
 
-            // Добавляем контейнер в секцию инвентаря
+            container.appendChild(img);
             containersDiv.appendChild(container);
-        } catch (error) {
-            console.error(`Произошла ошибка при добавлении изображения: ${error}`);
+
+            i++;
+            loadNextImage();
+        };
+
+        image.onerror = function() {
+            console.log(`No more images after ${i - 1}.`);
+
+            // Инициализируем draggable после добавления всех изображений
+            $(".draggable").draggable({
+                helper: function() {
+                    var $clone = $(this).clone();
+                    $clone.css({
+                        'transform': 'scale(7)',
+                    });
+                    return $clone;
+                },
+                start: function(event, ui) {
+                    $(this).css('transform', 'scale(2)');
+                }
+            });
+        };
+    }
+
+    loadNextImage();
+    document.querySelectorAll('*').forEach(function(el) {
+        if (getComputedStyle(el).cursor === 'pointer') {
+            el.style.cursor = "url('dw.png'), pointer";
+        }
+    });
+    
+    document.querySelectorAll('*').forEach(function(el) {
+        if (getComputedStyle(el).cursor === 'grab') {
+            el.style.cursor = "url('dw.png'), pointer";
         }
     });
 }
-
 
 
 
