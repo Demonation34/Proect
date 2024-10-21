@@ -120,7 +120,7 @@ function imgs_add() {
 
             const img = document.createElement('img');
             img.src = image.src;
-            img.alt = `Item ${i}`;
+            img.alt = ` Item ${i}`;
             img.classList.add('draggable');
 
             container.appendChild(img);
@@ -132,120 +132,76 @@ function imgs_add() {
 
         image.onerror = function() {
             console.log(`No more images after ${i - 1}.`);
-
-            // Инициализируем draggable после добавления всех изображений
-            $(".draggable").draggable({
-                helper: function() {
-                    var $clone = $(this).clone();
-                    $clone.css({
-                        'transform': 'scale(7)',
-                    });
-                    return $clone;
-                },
-                start: function(event, ui) {
-                    $(this).css('transform', 'scale(2)');
-                }
-            });
+            initializeDraggable(); // Инициализируем draggable после добавления всех изображений
         };
     }
 
-    loadNextImage();
-    document.querySelectorAll('*').forEach(function(el) {
-        if (getComputedStyle(el).cursor === 'pointer') {
-            el.style.cursor = "url('dw.png'), pointer";
-        }
-    });
-    
-    document.querySelectorAll('*').forEach(function(el) {
-        if (getComputedStyle(el).cursor === 'grab') {
-            el.style.cursor = "url('dw.png'), pointer";
-        }
-    });
+    function initializeDraggable() {
+        $(".draggable").draggable({
+            helper: function() {
+                const $clone = $(this).clone().css('transform', 'scale(7)');
+                return $clone;
+            },
+            start: function() {
+                const altText = $(this).attr("alt");
+                if (altText) {
+                    const numbers = altText.match(/\d+/g);
+                    if (numbers) {
+                        allNumbers.push(...numbers);
+                        numbers.forEach(num => console.log("Найдена цифра: " + num));
+                    }
+                }
+
+                dragCount++;
+                if (dragCount === 3) {
+                    afterThreeDragged = true;
+                    const correct = allNumbers.length >= 3 && allNumbers[0] === E1 && allNumbers[1] === E2 && allNumbers[2] === E3;
+                    lastMessage = correct ? "Верно" : "Неверно";
+                    console.log(lastMessage);
+                    dragCount = 0; 
+                    allNumbers = [];
+                }
+            }
+        });
+    }
+
+    loadNextImage(); // Запускаем загрузку изображений
 }
 
-
-
 start.addEventListener('click', () => {
-
     scene.classList.toggle('hidden');
-
-    scene.style.backgroundPosition = 'center';
-    scene.style.backgroundImage = 'url("imgs/human.png")';
-    scene.style.backgroundSize = 'contain';
-    scene.style.backgroundRepeat = 'no-repeat';
-    scene.style.height = '100%';
-    scene.style.objectFit = 'contain';
-    
-
-
+    Object.assign(scene.style, {
+        backgroundPosition: 'center',
+        backgroundImage: 'url("imgs/human.png")',
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        height: '100%',
+        objectFit: 'contain',
+    });
     toggleButton.classList.toggle('enb');
     start.innerHTML = `<a href="docs.html">Дальше</a>`;
-
 });
 
-// Счетчик для отслеживания количества перетаскиваемых элементов
+// Инициализация переменных
 let dragCount = 0; 
-let allNumbers = []; // Массив для хранения всех найденных цифр
-let afterThreeDragged = false; // Флаг для отслеживания состояния после трех перетаскиваний
-let lastMessage = ""; // Переменная для хранения последнего сообщения
+let allNumbers = []; 
+let afterThreeDragged = false; 
+let lastMessage = ""; 
 
-$(".draggable").draggable({
-    
-    helper: function() {
-        // Создаем клон элемента
-        var $clone = $(this).clone();
-        // Применяем трансформацию к клону
-        $clone.css({
-            'transform': 'scale(7)', // Увеличиваем клон на 10%
-            
-        });
-        return $clone; // Возвращаем клон как helper
-    },
-
-    start: function(event, ui) {
-        // Получаем значение атрибута alt у перетаскиваемого элемента
-        var altText = $(this).attr("alt");
-        $(this).css('transform', 'scale(2)');
-        
-
-        // Проверяем, существует ли alt
-        if (altText) {
-            // Используем регулярное выражение для извлечения всех цифр
-            var numbers = altText.match(/\d+/g);
-            if (numbers) {
-                // Объединяем все найденные цифры в общий массив
-                allNumbers = allNumbers.concat(numbers);
-            }
-        }
-
-        // Увеличиваем счетчик
-        dragCount++;
-
-        // Если перетаскивали три элемента
-        if (dragCount === 3) {
-            afterThreeDragged = true; // Устанавливаем флаг, что три элемента уже перетащили
-
-            // Проверяем, совпадают ли первые три цифры с 1, 2 и 3
-            if (allNumbers.length >= 3 && allNumbers[0] === E1 && allNumbers[1] === E2 && allNumbers[2] === E3) {
-                console.log("Верно");
-                lastMessage = "Верно"; // Сохраняем последнее сообщение
-            } else {
-                console.log("Неверно");
-                lastMessage = "Неверно"; // Сохраняем последнее сообщение
-            }
-
-            // Сбрасываем счетчик и массив для дальнейшего использования
-            dragCount = 0; 
-            allNumbers = [];
-        }
-    }
-});
+// Переносим инициализацию draggable в imgs_add для избежания дублирования
 
 // Обработчик события клика на кнопку
 $("#check").on("click", function() {
-    // Показать кастомный alert с последним сообщением
-    alert(lastMessage || "Неверно"); // Если lastMessage пуст, показываем "Неверно"
+    // Проверяем, если lastMessage не пустой
+    if (lastMessage) {
+        alert(lastMessage); // Если lastMessage не пуст, показываем его
+        window.location.href = "docs.html"; // Перенаправляем на docs.html
+    } else {
+        alert("Неверно"); 
+        window.location.href = "index.html";// Если lastMessage пуст, показываем "Неверно"
+    }
 });
+
 
 
 
@@ -263,36 +219,32 @@ $(document).ready(function() {
 
             // Устанавливаем пропорциональные размеры и координаты перетащенного элемента
             $draggedElement.css({
-                width: 'auto', // Например, 20% от ширины сцены
-                height: '97%', // Например, 25% от высоты сцены
+                width: '50vw', // Например, 20% от ширины сцены
+                height: '85vh', // Например, 25% от высоты сцены
                 position: 'absolute', // Позволяет задать точное положение
-                left: '53.7%', // Положение слева относительно родителя (например, 50%)
-                top: '50%', // Положение сверху относительно родителя (например, 50%)
+                left: '28.68vw', // Положение слева относительно родителя (например, 50%)
+                top: '2.3vh', // Положение сверху относительно родителя (например, 50%)
                 'object-fit':'contain',
-                'transform': 'translate(-50%, -50%)'
+                
                 
             });
 
             // Перемещаем его внутрь зоны
             $draggedElement.appendTo(this);
-            $draggedElement.draggable("disable");
+            $draggedElement.draggable('disable');
+            
+            
             
         }
     });
 });
 
 
-document.querySelectorAll('*').forEach(function(el) {
-    if (getComputedStyle(el).cursor === 'pointer') {
-        el.style.cursor = "url('dw.png'), pointer";
-    }
-});
 
-document.querySelectorAll('*').forEach(function(el) {
-    if (getComputedStyle(el).cursor === 'grab') {
-        el.style.cursor = "url('dw.png'), pointer";
-    }
-});
+
+
+
+
 
 
 

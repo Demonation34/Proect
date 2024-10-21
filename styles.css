@@ -219,11 +219,10 @@ body.menu-active .overlay {
     overflow: visible;
 }
 
-.draggable {
-    cursor: grab;       /* Иконка курсора */
+.draggable {       /* Иконка курсора */
     width: 3.7vw; /* 50px в 1366px (около 3.7vw) */
     height: 3.7vw; /* 50px в 1366px (около 3.7vw) */
-    object-fit: cover; /* Чтобы изображение корректно вписывалось */
+    object-fit: contain; /* Чтобы изображение корректно вписывалось */
     border-radius: 0.37vw; /* 5px в 1366px (около 0.37vw) */
 }
 
