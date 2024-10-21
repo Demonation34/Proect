@@ -116,3 +116,61 @@ pdfjsLib.getDocument('sample2.pdf').promise.then((doc3) => {
         renderPage(pageNum3, pdfDoc3, canvas3);  // Перерисовываем canvas3
     });
 });
+// ... ваш существующий код ...
+
+// Добавляем переменные для отслеживания состояния удержания
+let isMouseDown = false;
+let mouseHoldTimeout;
+
+// Обработчик для начала удержания мыши
+canvas1.addEventListener('mousedown', function(event) {
+    isMouseDown = true;
+
+    // Устанавливаем таймер, который откроет PDF через 500 мс
+    mouseHoldTimeout = setTimeout(() => {
+        window.open('sample.pdf', '_blank'); // Открываем PDF в новой вкладке
+    }, 500); // Задержка в 500 мс для определения удержания
+});
+
+// Обработчик для завершения удержания мыши
+canvas1.addEventListener('mouseup', function(event) {
+    isMouseDown = false;
+    clearTimeout(mouseHoldTimeout); // Очищаем таймер
+});
+
+// Обработчик для выхода за пределы канваса
+canvas1.addEventListener('mouseleave', function(event) {
+    isMouseDown = false;
+    clearTimeout(mouseHoldTimeout); // Очищаем таймер
+});
+
+// Аналогичные обработчики для других канвасов
+canvas2.addEventListener('mousedown', function(event) {
+    isMouseDown = true;
+    mouseHoldTimeout = setTimeout(() => {
+        window.open('sample1.pdf', '_blank');
+    }, 500);
+});
+canvas2.addEventListener('mouseup', function(event) {
+    isMouseDown = false;
+    clearTimeout(mouseHoldTimeout);
+});
+canvas2.addEventListener('mouseleave', function(event) {
+    isMouseDown = false;
+    clearTimeout(mouseHoldTimeout);
+});
+
+canvas3.addEventListener('mousedown', function(event) {
+    isMouseDown = true;
+    mouseHoldTimeout = setTimeout(() => {
+        window.open('sample2.pdf', '_blank');
+    }, 500);
+});
+canvas3.addEventListener('mouseup', function(event) {
+    isMouseDown = false;
+    clearTimeout(mouseHoldTimeout);
+});
+canvas3.addEventListener('mouseleave', function(event) {
+    isMouseDown = false;
+    clearTimeout(mouseHoldTimeout);
+});

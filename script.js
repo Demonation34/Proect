@@ -15,6 +15,11 @@ E1="1";
 E2="2";
 E3="3";
 E4="4";
+function checkCorrect() {
+    const correct = allNumbers.length >= 3 && allNumbers[0] === E1 && allNumbers[1] === E2 && allNumbers[2] === E3;
+    lastMessage = correct ? "Верно" : "Неверно";
+    console.log(lastMessage);
+}
 // Для каждого элемента с классом butn добавляем обработчики событий
 buttons.forEach(button => {
     // Когда нажата кнопка мыши (mousedown)
@@ -95,7 +100,7 @@ toggleButton.addEventListener('click', function() {
     }
 });
 
-
+let previousStates = [];
 // ------------------------------------- krest-inventory
 // Обработчик для крестика "×" для скрытия инвентаря и показа кнопки
 document.getElementById('closeInventory').addEventListener('click', function() {
@@ -147,23 +152,24 @@ function imgs_add() {
                 if (altText) {
                     const numbers = altText.match(/\d+/g);
                     if (numbers) {
+                        previousStates.push([...allNumbers]);
                         allNumbers.push(...numbers);
                         numbers.forEach(num => console.log("Найдена цифра: " + num));
+                        checkCorrect();
                     }
                 }
 
                 dragCount++;
-                if (dragCount === 3) {
-                    afterThreeDragged = true;
-                    const correct = allNumbers.length >= 3 && allNumbers[0] === E1 && allNumbers[1] === E2 && allNumbers[2] === E3;
-                    lastMessage = correct ? "Верно" : "Неверно";
-                    console.log(lastMessage);
-                    dragCount = 0; 
-                    allNumbers = [];
-                }
+            if (dragCount === 3) {
+                afterThreeDragged = true;
+                
+                dragCount = 0;
             }
-        });
-    }
+        }
+    });
+}
+
+// Функция проверки правильности
 
     loadNextImage(); // Запускаем загрузку изображений
 }
@@ -195,10 +201,10 @@ $("#check").on("click", function() {
     // Проверяем, если lastMessage не пустой
     if (lastMessage) {
         alert(lastMessage); // Если lastMessage не пуст, показываем его
-        window.location.href = "docs.html"; // Перенаправляем на docs.html
+        
     } else {
         alert("Неверно"); 
-        window.location.href = "index.html";// Если lastMessage пуст, показываем "Неверно"
+        
     }
 });
 
@@ -239,6 +245,52 @@ $(document).ready(function() {
     });
 });
 
+// Функция для сброса инвентаря и обновления элемента human
+function resetInventoryAndHuman() {
+    // Сбрасываем переменную lastMessage
+    lastMessage = '';
+
+    // Очищаем инвентарь
+    
+    containersDiv.innerHTML = ''; // Удаляем все элементы внутри контейнера
+
+    // Запускаем заново процесс добавления изображений
+    imgs_add(); 
+
+    // Обновляем элемент human
+    
+    //scene.innerHTML = ''; // Удаляем текущий фон и содержимое
+
+    // Создаем заново элемент human
+   //Object.assign(scene.style, {
+   //    backgroundPosition: 'center',
+   //    backgroundImage: 'url("imgs/human.png")',
+   //    backgroundSize: 'contain',
+   //    backgroundRepeat: 'no-repeat',
+   //    height: '100%',
+   //    objectFit: 'contain',
+   //});
+   const sceneDiv = document.getElementById('scene');
+    
+    // Ищем элементы с alt, содержащим "Item" и возможными пробелами
+    const items = Array.from(sceneDiv.querySelectorAll('img[alt*="Item"]'));
+
+    // Удаляем последний элемент с атрибутом alt, содержащим "Item"
+    if (items.length > 0) {
+        const lastItem = items[items.length - 1];
+        lastItem.remove(); // Удаляем последний элемент
+    }
+    if (previousStates.length > 0) {
+        allNumbers = previousStates.pop(); // Восстанавливаем предыдущее состояние
+        console.log("Откат на один шаг назад, текущее состояние:", allNumbers);
+        checkCorrect(); // Перепроверяем правильность после отката
+    } else {
+        console.log("Нечего откатывать!");
+    }
+}
+
+// Добавляем обработчик события для сброса по нажатию на кнопку с id 'sbros'
+document.getElementById('sbros').addEventListener('click', resetInventoryAndHuman);
 
 
 
