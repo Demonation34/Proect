@@ -5,100 +5,39 @@
 }
 
 .image-container {
-    display: flex; /* Позволяет располагать изображения в строку */
-    gap: 6vw; /* Расстояние между изображениями */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1vw;
+    justify-items: center;
+    margin-top: 2vh;
 }
 
 .image-item {
     margin-top: 5vh;
-    width: 21vw;
-    height: 77vh;
+    width: 8vh;
+    height: 10vh;
     margin-left: 5vw;
 }
 
 .pdf_c {
     position: absolute;
-    margin-top: -68vh;
-    height: 67vh;
-    width: 17.2vw;
-    margin-left: 7vw;
+    margin-top: -9.5vh;
+    height: 11vh;
+    width: 6.7vh;
+    margin-left: 5.5vw;
     clip-path: inset(0 0 3vh 0);
     transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+    z-index: 1;
 }
 
 
 
-.pdf_c:hover {
+
+
+.pdf_c.clicked {
     transform: translate(-20%, -5%) scale(1.2); 
     width: auto;
     height: 77vh;
-    margin-top: -71vh;
-}
-.butcan1 {
-    font-size: 2.6vh;
-    position: absolute;
-    left: 16.4vw;
-    top: 4vh;
-    width: 9vw;
-    height: 7vh;
-    background-color: #4CAF50; /* Зеленый фон */
-    color: white; /* Цвет текста */
-    border: none; /* Убираем стандартную рамку */
-    border-radius: 16vw; /* Скругляем углы */
-    cursor: pointer; /* Указываем, что это кнопка */
-    transition: background-color 0.3s, transform 0.2s; /* Плавные переходы */
-}
-.butcan1:hover {
-    background-color: #45a049; /* Темнее при наведении */
-    transform: scale(1.05); /* Увеличение при наведении */
-}
-
-.butcan1:active {
-    transform: scale(0.95); /* Уменьшение при нажатии */
-}
-
-.butcan2 {
-    font-size: 2.6vh;
-    position: absolute;
-    left: 48.35vw;
-    top: 4vh;
-    width: 9vw;
-    height: 7vh;
-    background-color: #4CAF50; /* Зеленый фон */
-    color: white; /* Цвет текста */
-    border: none; /* Убираем стандартную рамку */
-    border-radius: 16vw; /* Скругляем углы */
-    cursor: pointer; /* Указываем, что это кнопка */
-    transition: background-color 0.3s, transform 0.2s; /* Плавные переходы */
-}
-.butcan2:hover {
-    background-color: #45a049; /* Темнее при наведении */
-    transform: scale(1.05); /* Увеличение при наведении */
-}
-
-.butcan2:active {
-    transform: scale(0.95); /* Уменьшение при нажатии */
-}
-
-.butcan3 {
-    font-size: 2.6vh;
-    position: absolute;
-    left: 80.4vw;
-    top: 4vh;
-    width: 9vw;
-    height: 7vh;
-    background-color: #4CAF50; /* Зеленый фон */
-    color: white; /* Цвет текста */
-    border: none; /* Убираем стандартную рамку */
-    border-radius: 16vw; /* Скругляем углы */
-    cursor: pointer; /* Указываем, что это кнопка */
-    transition: background-color 0.3s, transform 0.2s; /* Плавные переходы */
-}
-.butcan3:hover {
-    background-color: #45a049; /* Темнее при наведении */
-    transform: scale(1.05); /* Увеличение при наведении */
-}
-
-.butcan3:active {
-    transform: scale(0.95); /* Уменьшение при нажатии */
+    margin-top: -10vh;
+    z-index: 10;
 }

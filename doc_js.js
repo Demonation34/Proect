@@ -1,16 +1,13 @@
-var pdfDoc1 = null,
-    pdfDoc2 = null,
-    pdfDoc3 = null,
-    pageNum1 = 1,  // Начальная страница для sample.pdf
-    pageNum2 = 1,  // Начальная страница для sample1.pdf
-    pageNum3 = 1,  // Начальная страница для sample2.pdf
-    scale = 1.5;
+// Переменные для PDF документов и страниц
+var pdfDoc1 = null, pdfDoc2 = null, pdfDoc3 = null, pdfDoc4 = null, pdfDoc5 = null, pdfDoc6 = null, pdfDoc7 = null, pdfDoc8 = null;
+var pageNum1 = 1, pageNum2 = 1, pageNum3 = 1, pageNum4 = 1, pageNum5 = 1, pageNum6 = 1, pageNum7 = 1, pageNum8 = 1;
+var scale = 1.5;
 
-// Функция для рендеринга страницы на канвасе
+// Функция для рендеринга страницы
 function renderPage(num, pdfDoc, canvas) {
     var ctx = canvas.getContext('2d');
     pdfDoc.getPage(num).then((page) => {
-        var viewport = page.getViewport({scale: scale});
+        var viewport = page.getViewport({ scale: scale });
         canvas.height = viewport.height;
         canvas.width = viewport.width;
 
@@ -26,151 +23,78 @@ function renderPage(num, pdfDoc, canvas) {
     });
 }
 
-// Загрузка PDF документов
-pdfjsLib.getDocument('sample.pdf').promise.then((doc1) => {
-    pdfDoc1 = doc1;
+// Функция для инициализации PDF документа и привязки событий
+function initPdf(docUrl, pdfVar, canvasId, pageNumVar) {
+    pdfjsLib.getDocument(docUrl).promise.then((doc) => {
+        pdfVar = doc;
+        var canvas = document.getElementById(canvasId);
 
-    var canvas1 = document.getElementById("canvas1");
+        // Рендер первой страницы
+        renderPage(pageNumVar, pdfVar, canvas);
 
-    // Рендер первой страницы для sample.pdf
-    renderPage(pageNum1, pdfDoc1, canvas1);
+        // Перелистывание страниц вперед при щелчке левой кнопкой мыши
+        canvas.addEventListener('click', function() {
+            if (pageNumVar < pdfVar.numPages) {
+                pageNumVar++;
+            } else {
+                pageNumVar = 1;
+            }
+            renderPage(pageNumVar, pdfVar, canvas);
+        });
 
-    // Обработчик для перелистывания на canvas1
-    canvas1.addEventListener('click', function() {
-        if (pageNum1 < pdfDoc1.numPages) {
-            pageNum1++;  // Увеличиваем номер страницы для sample.pdf
-        } else {
-            pageNum1 = 1;  // Если конец документа, возвращаемся к первой странице
-        }
-        renderPage(pageNum1, pdfDoc1, canvas1);  // Перерисовываем canvas1
+        // Перелистывание страниц назад при щелчке правой кнопкой мыши
+        canvas.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+            if (pageNumVar > 1) {
+                pageNumVar--;
+            } else {
+                pageNumVar = pdfVar.numPages;
+            }
+            renderPage(pageNumVar, pdfVar, canvas);
+        });
+
+        
     });
+}
 
-    // Обработчик для перелистывания назад на canvas1 (правая кнопка мыши)
-    canvas1.addEventListener('contextmenu', function(event) {
-        event.preventDefault();  // Отменяем стандартное контекстное меню
-        if (pageNum1 > 1) {
-            pageNum1--;  // Уменьшаем номер страницы для sample.pdf
-        } else {
-            pageNum1 = pdfDoc1.numPages;  // Если первая страница, возвращаемся к последней
-        }
-        renderPage(pageNum1, pdfDoc1, canvas1);  // Перерисовываем canvas1
-    });
-});
+// Инициализация всех PDF документов
+initPdf('sample.pdf', pdfDoc1, 'canvas1', pageNum1);
+initPdf('sample1.pdf', pdfDoc2, 'canvas2', pageNum2);
+initPdf('sample2.pdf', pdfDoc3, 'canvas3', pageNum3);
+initPdf('sample3.pdf', pdfDoc4, 'canvas4', pageNum4);
+initPdf('sample4.pdf', pdfDoc5, 'canvas5', pageNum5);
+initPdf('sample5.pdf', pdfDoc6, 'canvas6', pageNum6);
+initPdf('sample6.pdf', pdfDoc7, 'canvas7', pageNum7);
+initPdf('sample7.pdf', pdfDoc8, 'canvas8', pageNum8);
 
-pdfjsLib.getDocument('sample1.pdf').promise.then((doc2) => {
-    pdfDoc2 = doc2;
 
-    var canvas2 = document.getElementById("canvas2");
 
-    // Рендер первой страницы для sample1.pdf
-    renderPage(pageNum2, pdfDoc2, canvas2);
 
-    // Обработчик для перелистывания на canvas2
-    canvas2.addEventListener('click', function() {
-        if (pageNum2 < pdfDoc2.numPages) {
-            pageNum2++;  // Увеличиваем номер страницы для sample1.pdf
-        } else {
-            pageNum2 = 1;  // Если конец документа, возвращаемся к первой странице
-        }
-        renderPage(pageNum2, pdfDoc2, canvas2);  // Перерисовываем canvas2
-    });
 
-    // Обработчик для перелистывания назад на canvas2 (правая кнопка мыши)
-    canvas2.addEventListener('contextmenu', function(event) {
-        event.preventDefault();  // Отменяем стандартное контекстное меню
-        if (pageNum2 > 1) {
-            pageNum2--;  // Уменьшаем номер страницы для sample1.pdf
-        } else {
-            pageNum2 = pdfDoc2.numPages;  // Если первая страница, возвращаемся к последней
-        }
-        renderPage(pageNum2, pdfDoc2, canvas2);  // Перерисовываем canvas2
-    });
-});
 
-pdfjsLib.getDocument('sample2.pdf').promise.then((doc3) => {
-    pdfDoc3 = doc3;
 
-    var canvas3 = document.getElementById("canvas3");
+// Находим все элементы с классом .pdf_c
+const pdfElements = document.querySelectorAll(".pdf_c");
 
-    // Рендер первой страницы для sample2.pdf
-    renderPage(pageNum3, pdfDoc3, canvas3);
+// Функция для добавления класса clicked к элементу
+function activatePdf(element) {
+    // Сначала убираем класс clicked у всех .pdf_c
+    pdfElements.forEach(el => el.classList.remove("clicked"));
+    // Добавляем класс clicked к выбранному элементу
+    element.classList.add("clicked");
+}
 
-    // Обработчик для перелистывания на canvas3
-    canvas3.addEventListener('click', function() {
-        if (pageNum3 < pdfDoc3.numPages) {
-            pageNum3++;  // Увеличиваем номер страницы для sample2.pdf
-        } else {
-            pageNum3 = 1;  // Если конец документа, возвращаемся к первой странице
-        }
-        renderPage(pageNum3, pdfDoc3, canvas3);  // Перерисовываем canvas3
-    });
-
-    // Обработчик для перелистывания назад на canvas3 (правая кнопка мыши)
-    canvas3.addEventListener('contextmenu', function(event) {
-        event.preventDefault();  // Отменяем стандартное контекстное меню
-        if (pageNum3 > 1) {
-            pageNum3--;  // Уменьшаем номер страницы для sample2.pdf
-        } else {
-            pageNum3 = pdfDoc3.numPages;  // Если первая страница, возвращаемся к последней
-        }
-        renderPage(pageNum3, pdfDoc3, canvas3);  // Перерисовываем canvas3
+// Добавляем обработчик клика для каждого элемента .pdf_c
+pdfElements.forEach(el => {
+    el.addEventListener("click", function(event) {
+        event.stopPropagation(); // Предотвращаем всплытие события
+        activatePdf(el); // Применяем стиль к нажатому элементу
     });
 });
-// ... ваш существующий код ...
 
-// Добавляем переменные для отслеживания состояния удержания
-let isMouseDown = false;
-let mouseHoldTimeout;
-
-// Обработчик для начала удержания мыши
-canvas1.addEventListener('mousedown', function(event) {
-    isMouseDown = true;
-
-    // Устанавливаем таймер, который откроет PDF через 500 мс
-    mouseHoldTimeout = setTimeout(() => {
-        window.open('sample.pdf', '_blank'); // Открываем PDF в новой вкладке
-    }, 500); // Задержка в 500 мс для определения удержания
+// Обработчик для клика вне элементов .pdf_c
+document.addEventListener("click", function() {
+    pdfElements.forEach(el => el.classList.remove("clicked")); // Убираем класс у всех .pdf_c
 });
 
-// Обработчик для завершения удержания мыши
-canvas1.addEventListener('mouseup', function(event) {
-    isMouseDown = false;
-    clearTimeout(mouseHoldTimeout); // Очищаем таймер
-});
 
-// Обработчик для выхода за пределы канваса
-canvas1.addEventListener('mouseleave', function(event) {
-    isMouseDown = false;
-    clearTimeout(mouseHoldTimeout); // Очищаем таймер
-});
-
-// Аналогичные обработчики для других канвасов
-canvas2.addEventListener('mousedown', function(event) {
-    isMouseDown = true;
-    mouseHoldTimeout = setTimeout(() => {
-        window.open('sample1.pdf', '_blank');
-    }, 500);
-});
-canvas2.addEventListener('mouseup', function(event) {
-    isMouseDown = false;
-    clearTimeout(mouseHoldTimeout);
-});
-canvas2.addEventListener('mouseleave', function(event) {
-    isMouseDown = false;
-    clearTimeout(mouseHoldTimeout);
-});
-
-canvas3.addEventListener('mousedown', function(event) {
-    isMouseDown = true;
-    mouseHoldTimeout = setTimeout(() => {
-        window.open('sample2.pdf', '_blank');
-    }, 500);
-});
-canvas3.addEventListener('mouseup', function(event) {
-    isMouseDown = false;
-    clearTimeout(mouseHoldTimeout);
-});
-canvas3.addEventListener('mouseleave', function(event) {
-    isMouseDown = false;
-    clearTimeout(mouseHoldTimeout);
-});
