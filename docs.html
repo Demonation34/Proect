@@ -34,11 +34,11 @@
             <div class="image-container">
                 <!-- Существующие изображения -->
                 <div class="image-item">
-                    <img src="imgs/doc.png" alt="doc 1" class="image-item">
+                    <img src="imgs/doc1.png" alt="doc 1" class="image-item">
                     <canvas id="canvas1" class="pdf_c"></canvas>
                 </div>
                 <div class="image-item">
-                    <img src="imgs/doc.png" alt="doc 2" class="image-item">
+                    <img src="imgs/doc2.png" alt="doc 2" class="image-item">
                     <canvas id="canvas2" class="pdf_c"></canvas>
                 </div>
                 <div class="image-item">
@@ -71,6 +71,8 @@
         </div>
 
         <!-- Нижняя панель -->
+        <div class="drop-container" id="dropContainer">
+            <p>Перетащите документы сюда</p>
         <div class="bottom-bar">
             <div class="blue-section">
                 <span></span>
@@ -89,8 +91,9 @@
 
 <!-- Сценарии для кнопок -->
 
-<script src="script.js"></script>
+<!--<script src="script.js"></script>-->
 <script src="doc_js.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js"></script>
 

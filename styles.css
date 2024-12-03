@@ -290,3 +290,31 @@ body.menu-active .overlay {
     top: -1.5vh; /* Разместить крестик над контейнером */
     padding: 0.65vh; /* 5px в 768px (около 0.65vh) */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.overlay-image {
+
+
+    position: relative;
+    top: -4vw;
+    left: 0vw;
+    pointer-events: none;
+    height: 3.5vw;
+    width: 3.5vw;
+
+
+    pointer-events: none; /* Чтобы не мешать взаимодействию с изображением */
+
+}

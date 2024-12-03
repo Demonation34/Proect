@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/css.css">
+
+<title>Проект</title>
+
+</head>
+<body>
+    
+<!-- Burger Menu HTML -->
+<div id="burger-menu" onclick="openNav()">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+<!-- Overlay -->
+<div id="overlay" onclick="closeNav()"></div>
+
+<div id="side-menu">
+    <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
+    <a href="#">Заново</a>
+    <a href="#">Дальше</a>
+    <a href="#">Завершить</a>
+</div>
+
+<div id="main-container">
+    <div id="start-image-container">
+        <img id="start-image" src="Старт.png" alt="Start Image">
+        <div id="interface-container">
+            <style>
+                #main-image {
+                    width: 50%;
+                    height: 125%;
+                }
+            </style>
+            <div class="background-image"></div>
+            <div class="overlay-image"></div>
+            <div class="suit-image"></div>
+            <div class="style-image-7-2"></div>
+<div class="style-image-7-3"></div>
+<div class="style-image-8"></div>
+<div class="style-image-wd1"></div>
+<div class="style-image-inventory"></div>
+<div class="style-image-2"></div>
+<div class="style-image-3-2"></div>
+<div class="style-image-3-3"></div>
+<div class="style-image-3-4"></div>
+<div class="style-image-3-5-white"></div>
+<div class="style-image-3-5-blue"></div>
+<div class="style-image-4-white"></div>
+<div class="style-image-4-blue"></div>
+<div class="style-image-5-1"></div>
+<div class="style-image-5-2-igc"></div>
+<div class="style-image-5-3-radio"></div>
+<div class="style-image-5-4"></div>
+<div class="style-image-5-5-tool"></div>
+<div class="style-image-5-6-dosimeter"></div>
+<div class="style-image-kyrtka"></div>
+<div class="style-image-zash"></div>
+<div class="style-image-belgaz"></div>
+
+
+
+            
+           
+            
+            <button id="figure"></button>
+            <button id="Home"></button>
+            <button id="Next"></button>
+            <button id="inventar"></button>
+            <div id="imageContainer" style="display: none;">
+                <img class="scroll-image" src="wd.png" alt="wd.png">
+<img class="scroll-image" src="Комбинезон.png" alt="Комбинезон.png">
+<img class="scroll-image" src="Куртка.png" alt="Куртка.png">
+<img class="scroll-image" src="7.1. П_Защитные очки.png" alt="7.1. П_Защитные очки.png">
+<img class="scroll-image" src="7.2. П_Противогаз для белого фона.png" alt="7.2. П_Противогаз для белого фона.png">
+<img class="scroll-image" src="7.2. П_Противогаз для голубого фона.png" alt="7.2. П_Противогаз для голубого фона.png">
+<img class="scroll-image" src="7.3. П_Шланговый противогаз с курткой.png" alt="7.3. П_Шланговый противогаз с курткой.png">
+<img class="scroll-image" src="8. П_Каска.png" alt="8. П_Каска.png">
+<img class="scroll-image" src="2. П_Ботинки.png" alt="2. П_Ботинки.png">
+<img class="scroll-image" src="3.2. П_ИГC.png" alt="3.2. П_ИГC.png">
+<img class="scroll-image" src="3.3. П_Рация.png" alt="3.3. П_Рация.png">
+<img class="scroll-image" src="3.4. П_Переносной газосигнализатор.png" alt="3.4. П_Переносной газосигнализатор.png">
+<img class="scroll-image" src="3.5. П_Искробезопасный инструмент для белого фона.png" alt="3.5. П_Искробезопасный инструмент для белого фона.png">
+<img class="scroll-image" src="3.5. П_Искробезопасный инструмент для голубого фона.png" alt="3.5. П_Искробезопасный инструмент для голубого фона.png">
+<img class="scroll-image" src="4. П_Комбинезон для белого фона.png" alt="4. П_Комбинезон для белого фона.png">
+<img class="scroll-image" src="4. П_Комбинезон для голубого фона.png" alt="4. П_Комбинезон для голубого фона.png">
+<img class="scroll-image" src="5.1. П_Перчатки.png" alt="5.1. П_Перчатки.png">
+<img class="scroll-image" src="5.2. П_Перчатки ИГC.png" alt="5.2. П_Перчатки ИГC.png">
+<img class="scroll-image" src="5.3. П_Перчатки рация.png" alt="5.3. П_Перчатки рация.png">
+<img class="scroll-image" src="5.4. П_Перчатки переносной газосигнализатор.png" alt="5.4. П_Перчатки переносной газосигнализатор.png">
+<img class="scroll-image" src="5.5. П_Перчатки инструмент.png" alt="5.5. П_Перчатки инструмент.png">
+<img class="scroll-image" src="5.6. П_Перчатки дозимметр.png" alt="5.6. П_Перчатки дозимметр.png">
+
+            </div>
+            
+        </div>
+    </div>
+    <button id="start-button">Начать</button>
+    <style>
+        #start-button {
+            z-index: 9999;
+        }
+    </style>
+
+    <button id="finish-button">Завершить</button>
+    <style>
+        #finish-button {
+            z-index: 9999;
+        }
+    </style>
+</div>
+
+<script src="js/js.js"></script>
+<style>
+    #side-menu {
+        z-index: 9999;
+    }
+    #burger-menu {
+        z-index: 9999;
+    }
+    #overlay{
+        z-index: 9999;
+    }
+</style>
+</body>
+</html>

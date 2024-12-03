@@ -21,10 +21,10 @@
 
 .pdf_c {
     position: absolute;
-    margin-top: -9.5vh;
-    height: 11vh;
-    width: 6.7vh;
-    margin-left: 5.5vw;
+    margin-top: 5.9vh;
+    height: 23vh;
+    width: 15.5vh;
+    margin-left: 0.1vw;
     clip-path: inset(0 0 3vh 0);
     transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
     z-index: 1;
@@ -41,3 +41,95 @@
     margin-top: -10vh;
     z-index: 10;
 }
+
+
+.image-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.image-item img {
+
+    margin-top: 0vh;
+    margin-left: 0vw;
+}
+
+.drop-container {
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px dashed #007BFF;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.drop-container.dragover {
+    background-color: #e0f7ff;
+    border-color: #0056b3;
+}
+
+
+/* Контейнер для изображений */
+.image-container {
+    
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2vw;
+        padding: 8vh;
+        justify-content: center;
+        background-color: #E8F5FF;
+        border-radius: 11px;
+        height: 74vh;
+        width: 91vw;
+        margin-left: 6.2vw;
+}
+
+/* Элементы изображений */
+.image-item {
+    width: 19vh;
+    height: 25vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 2px solid #ccc; */
+    border-radius: 8px;
+    background-color: #fff;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    cursor: grab;
+    transition: transform 0.2s ease-in-out;
+}
+
+.image-item:hover {
+    transform: scale(1.1); /* Увеличение при наведении */
+}
+
+/* Нижний контейнер */
+.drop-container {
+    
+    margin-top: 1vh;
+    padding: 2vw;
+    border-radius: 4vw;
+    background-color: #F9FAFB;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4vw;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6vw;
+    width: 92vw;
+}
+
+.drop-container.dragover {
+    background-color: #E0F7FF;
+    border-color: #0056b3;
+}
+
+
+
+
+
+
+
+

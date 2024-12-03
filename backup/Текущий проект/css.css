@@ -1,0 +1,525 @@
+body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+    
+    /* Burger Menu Styles */
+    #burger-menu {
+        position: fixed;
+        top: 10px;
+        left: 26px;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    #burger-menu div {
+        width: 140%;
+        height: 5px;
+        background-color: white;
+        margin: 6px 0;
+        transition: 0.4s;
+    }
+
+    #side-menu {
+        height: 100%;
+        width: 250px;
+        position: fixed;
+        z-index: 1001;
+        top: 0;
+        left: -250px;
+        background-color: #E92E3C;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+
+    #side-menu a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: white;
+        display: block;
+        transition: 0.3s;
+    }
+
+    #side-menu a:hover {
+        color: #f1f1f1;
+    }
+
+    #side-menu .close-btn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+   
+    /* Overlay Styles */
+    #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: none;
+        z-index: 1000;
+    }
+
+    /* Other existing styles */
+    #scroll-container {
+        overflow-y: auto;
+        max-height: 300px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+    }
+    
+    #start-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: 0;
+        border-radius: 0;
+        position: absolute;
+        bottom: 3%;
+        right: 50px;
+        background-color: #E92E3C;
+        color: white;
+        transform: scale(2.5);
+    }
+    #start-button:active {
+        background-color: #971e26;
+    }
+    #interface-container {
+        position: absolute;
+        top: 29%;
+        left: 62%;
+        transform: translate(-50%, -50%);
+        width: 50%;
+        height: 50%;
+        display: none;
+    }
+    #imageContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 20px;
+        overflow-y: auto;
+        max-height: 300px;
+        position: absolute;
+        width: 36%;
+        height: 56%;
+        bottom: -73%;
+        left: 49%;
+        background-image: url('инвентарь.png');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .scroll-image {
+        width: 46px;
+        height: 35px;
+        margin: 9px;
+        cursor: pointer;
+        position: relative;
+        margin-bottom: 12px;
+        margin-left: 12px;
+    }
+    .scroll-image:focus {
+        width: 70px;
+        height: 70px;
+        margin: 9px;
+        cursor: pointer;
+        position: relative;
+        margin-bottom: 12px;
+        margin-left: 12px;
+    }
+    #start-image {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+
+    #inventar {
+        position: absolute;
+        bottom: -92%;
+        left: 51%;
+        background-color: transparent;
+        border: none;
+        color: transparent;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        height: 18%;
+        width: 11%;
+    }
+    #figure {
+        position: absolute;
+        bottom: -18%;
+        left: 14%;
+        background-color: transparent;
+        border: none;
+        color: transparent;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        height: 106%;
+        width: 23%;
+    }
+    #Home {
+        position: absolute;
+    bottom: -92%;
+    left: 62%;
+    background-color: white;
+    border: none;
+    color: transparent;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    height: 17%;
+    width: 10%;
+    }    
+    #zoom-container {
+        display: none;
+        position: absolute;
+        z-index: 1002;
+        border: 2px solid #e92e3c;
+        width: 200px; /* Задайте ширину по вашему усмотрению */
+        height: 200px; /* Задайте высоту по вашему усмотрению */
+        overflow: hidden;
+    }
+    
+    #zoomed-image {
+        position: absolute;
+        max-width: none;
+        width: auto;
+        height: auto;
+    }
+    
+    
+                    .background-image {
+                        max-width: 80%;
+                        margin-top: 20px;
+                        position: absolute;
+                        width: 50%;
+                        height: 125%;
+                        background-image: url('Фигура.png');
+                        background-size: cover;
+                        background-position: center;
+                    }
+                    .overlay-image {
+                        max-width: 80%;
+                        margin-top: 20px;
+                        position: absolute;
+                        width: 50%;
+                        height: 125%;
+                        background-image: url('комбинезон.png');
+                        background-size: cover;
+                        background-position: center;
+                        opacity: 0;
+                    }
+                    .suit-image {
+                        max-width: 80%;
+                        margin-top: 20px;
+                        position: absolute;
+                        width: 50%;
+                        height: 125%;
+                        background-image: url('wd1.png');
+                        background-size: cover;
+                        background-position: center;
+                        opacity: 0;
+                    }
+                    /* 7.2. П_Противогаз для голубого фона */
+    .style-image-7-2 {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('7.2. П_Противогаз для голубого фона.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* 7.3. П_Шланговый противогаз с курткой */
+    .style-image-7-3 {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('7.3. П_Шланговый противогаз с курткой.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* 8. П_Каска */
+    .style-image-8 {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('8. П_Каска.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* "wd1.png" */
+    .style-image-wd1 {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('wd1.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* "инвентарь.png" */
+    .style-image-inventory {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('инвентарь.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* "2. П_Ботинки.png" */
+    .style-image-2 {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('2. П_Ботинки.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* "3.2. П_ИГC.png" */
+    .style-image-3-2 {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('3.2. П_ИГC.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* "3.3. П_Рация.png" */
+    .style-image-3-3 {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('3.3. П_Рация.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* "3.4. П_Переносной газосигнализатор.png" */
+    .style-image-3-4 {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('3.4. П_Переносной газосигнализатор.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* "3.5. П_Искробезопасный инструмент для белого фона.png" */
+    .style-image-3-5-white {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('3.5. П_Искробезопасный инструмент для белого фона.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* "3.5. П_Искробезопасный инструмент для голубого фона.png" */
+    .style-image-3-5-blue {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('3.5. П_Искробезопасный инструмент для голубого фона.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* "4. П_Комбинезон для белого фона.png" */
+    .style-image-4-white {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('4. П_Комбинезон для белого фона.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* "4. П_Комбинезон для голубого фона.png" */
+    .style-image-4-blue {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('4. П_Комбинезон для голубого фона.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* "5.1. П_Перчатки.png" */
+    .style-image-5-1 {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('5.1. П_Перчатки.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* "5.2. П_Перчатки ИГC.png" */
+    .style-image-5-2-igc {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('5.2. П_Перчатки ИГC.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* "5.3. П_Перчатки рация.png" */
+    .style-image-5-3-radio {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('5.3. П_Перчатки рация.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* "5.4. П_Перчатки переносной газосигнализатор.png" */
+    .style-image-5-4 {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('5.4. П_Перчатки переносной газосигнализатор.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* "5.5. П_Перчатки инструмент.png" */
+    .style-image-5-5-tool {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('5.5. П_Перчатки инструмент.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* "5.6. П_Перчатки дозимметр.png" */
+    .style-image-5-6-dosimeter {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('5.5. П_Перчатки инструмент.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+    }
+    
+    /* "6. П_Куртка.png" */
+    .style-image-kyrtka {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('Куртка.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        }
+    /* "7.1.  П_Защитные очки.png" */
+    .style-image-zash {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('7.1. П_Защитные очки.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        }
+    
+    /* "7.2.  П_Противогаз для белого фона.png" */
+    
+    .style-image-belgaz {
+        max-width: 80%;
+        margin-top: 20px;
+        position: absolute;
+        width: 50%;
+        height: 125%;
+        background-image: url('7.2. П_Противогаз для белого фона.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        }
+    
+        

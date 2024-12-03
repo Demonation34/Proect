@@ -97,4 +97,55 @@ document.addEventListener("click", function() {
     pdfElements.forEach(el => el.classList.remove("clicked")); // Убираем класс у всех .pdf_c
 });
 
+var inventoryDiv = document.getElementById('inventory');
+if (inventoryDiv) {
+    inventoryDiv.remove();
+}
 
+
+// Подсветка контейнера при наведении
+dropContainer.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropContainer.classList.add('dragover');
+});
+
+dropContainer.addEventListener('dragleave', () => {
+    dropContainer.classList.remove('dragover');
+});
+
+dropContainer.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropContainer.classList.remove('dragover');
+    
+    const data = e.dataTransfer.getData('text/plain'); // Получаем данные из drag-and-drop
+    console.log('Полученные данные:', data);
+
+    // Проверяем, является ли это путём к изображению
+    if (data) {
+        // Создаём элемент изображения
+        const img = document.createElement('img');
+        img.src = data;
+        img.style.opacity = '0'; // Скрываем перед анимацией
+        img.style.transition = 'opacity 0.5s ease-in-out';
+        img.style.width = '13vh'; // Устанавливаем размер миниатюры
+        img.style.height = '16vh';
+        img.style.objectFit = 'cover';
+        img.style.borderRadius = '1vh';
+        img.style.margin = '1vh'; // Расстояние между изображениями
+        img.draggable = false;
+
+        // Добавляем изображение в контейнер
+        dropContainer.appendChild(img);
+
+        // Запускаем анимацию появления
+        setTimeout(() => {
+            img.style.opacity = '1'; // Плавное появление
+        }, 0);
+    } else {
+        // Показываем сообщение, если данных нет или они невалидны
+        const error = document.createElement('p');
+        error.textContent = 'Не удалось загрузить изображение!';
+        error.style.color = 'red';
+        dropContainer.appendChild(error);
+    }
+});

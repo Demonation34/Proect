@@ -1,7 +1,7 @@
 <?php
 session_start();
 $host = 'example.local';
-$db = 'test';
+$db = 'BD';
 $user = 'root';
 $pass = '';
 
@@ -15,33 +15,27 @@ $options = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (PDOException $e) {
-    die('Подключение не удалось: ' . $e->getMessage());
+    die(json_encode(['status' => 'error', 'message' => 'Ошибка подключения к базе данных']));
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Получаем данные из запроса
     $login = $_POST['login'];
     $password = $_POST['password'];
 
-    // Подготавливаем SQL-запрос для поиска пользователя
-    $stmt = $pdo->prepare('SELECT * FROM users WHERE login = :login');
+    $stmt = $pdo->prepare('SELECT * FROM `Персона` WHERE login = :login');
     $stmt->execute(['login' => $login]);
     $user = $stmt->fetch();
 
-    // Проверяем, существует ли пользователь
-    if ($user) {
-        // Проверяем правильность пароля
-        if (password_verify($password, $user['password'])) {
-            // Авторизация успешна
-            $_SESSION['user'] = $user['id']; // Сохраняем идентификатор пользователя в сессии
-            echo json_encode(['status' => 'success']);
-        } else {
-            // Неверный пароль
-            echo json_encode(['status' => 'error', 'message' => 'Неверный пароль']);
-        }
+    if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['user'] = $user['id'];
+
+        // Сохранение ID в JSON-файл
+        $data = ['персона_id' => $user['id']];
+        file_put_contents('user_data.json', json_encode($data, JSON_PRETTY_PRINT));
+
+        echo json_encode(['status' => 'success', 'id' => $user['id']]);
     } else {
-        // Неверный логин
-        echo json_encode(['status' => 'error', 'message' => 'Неверный логин']);
+        echo json_encode(['status' => 'error', 'message' => 'Неверный логин или пароль']);
     }
 }
 ?>

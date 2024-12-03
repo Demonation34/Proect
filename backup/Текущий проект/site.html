@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Diagram</title>
+    <style>
+        .button {
+            cursor: pointer;
+        }
+        .valve {
+            fill: purple;
+            stroke: black;
+            stroke-width: 2;
+        }
+        .pipe {
+            stroke: black;
+            stroke-width: 2;
+        }
+        .tank {
+            fill: silver;
+            stroke: black;
+            stroke-width: 2;
+        }
+        .tanker {
+            fill: orange;
+            stroke: black;
+            stroke-width: 2;
+        }
+        .text-label {
+            fill: black;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <svg width="1000" height="600" style="border:1px solid black;">
+        <!-- Tanker -->
+        <rect x="50" y="50" width="100" height="50" class="tanker"></rect>
+        <text x="75" y="40" class="text-label">Танкер</text>
+        <text x="100" y="75" class="text-label">MAX</text>
+
+        <!-- Valve 15 -->
+        <rect class="button valve" id="valve15" x="150" y="75" width="20" height="20"></rect>
+        <text x="175" y="90" class="text-label">№15</text>
+
+        <!-- Pipes -->
+        <line x1="170" y1="85" x2="200" y2="85" class="pipe"></line>
+
+        <!-- Main Tank -->
+        <circle cx="250" cy="85" r="40" class="tank"></circle>
+
+        <!-- Valve 16 -->
+        <rect class="button valve" id="valve16" x="290" y="75" width="20" height="20"></rect>
+        <text x="315" y="90" class="text-label">№16</text>
+
+        <!-- Additional pipes -->
+        <line x1="290" y1="85" x2="310" y2="85" class="pipe"></line>
+
+        <!-- Additional Valves and Tanks -->
+        <rect class="button valve" id="valve17" x="250" y="130" width="20" height="20"></rect>
+        <text x="275" y="145" class="text-label">№17</text>
+
+        <rect class="button valve" id="valve3" x="200" y="100" width="20" height="20"></rect>
+        <text x="225" y="115" class="text-label">№3</text>
+
+        <!-- Other elements based on the provided diagram -->
+
+        <!-- Example of a complex component -->
+        <rect class="button valve" id="valve11" x="350" y="50" width="20" height="20"></rect>
+        <text x="375" y="65" class="text-label">№11</text>
+        <line x1="360" y1="60" x2="400" y2="60" class="pipe"></line>
+        <rect class="button valve" id="valve2" x="400" y="50" width="20" height="20"></rect>
+        <text x="425" y="65" class="text-label">№2</text>
+
+        <!-- Continue adding all elements from the diagram -->
+        
+    </svg>
+
+    <!-- Control Panel -->
+    <div>
+        <h3>Control Panel</h3>
+        <div>
+            <button onclick="toggleValve('valve15')">Toggle Valve 15</button>
+            <button onclick="toggleValve('valve16')">Toggle Valve 16</button>
+            <button onclick="toggleValve('valve17')">Toggle Valve 17</button>
+            <button onclick="toggleValve('valve3')">Toggle Valve 3</button>
+            <button onclick="toggleValve('valve11')">Toggle Valve 11</button>
+            <button onclick="toggleValve('valve2')">Toggle Valve 2</button>
+            <!-- Add buttons for other valves -->
+        </div>
+    </div>
+
+    <script>
+        function toggleValve(valveId) {
+            const valve = document.getElementById(valveId);
+            if (valve.style.fill === 'purple') {
+                valve.style.fill = 'green';
+            } else {
+                valve.style.fill = 'purple';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,13 +1,14 @@
 $(document).ready(function () {
    $('#go').click(function (event) {
-       event.preventDefault(); // Отключаем стандартное поведение кнопки
+       event.preventDefault();
 
-       // Получаем данные из полей формы
+       // Собираем данные для отправки
        var login = $('#name').val();
        var password = $('#pass').val();
-       // Отправляем AJAX-запрос
+
+       // AJAX-запрос для авторизации
        $.ajax({
-           url: 'login.php', // Файл для обработки логина на сервере
+           url: 'login.php', // Укажите путь к файлу авторизации
            type: 'POST',
            data: {
                login: login,
@@ -15,24 +16,35 @@ $(document).ready(function () {
            },
            success: function (response) {
                // Ожидаем, что ответ придет в формате JSON
-               var data = JSON.parse(response);
+               try {
+                   var data = JSON.parse(response);
 
-               if (data.status === 'success') {
-                   // Если авторизация прошла успешно, перенаправляем на main.html
-                   window.location.href = 'main.html';
-               } else if (data.status === 'error') {
-                   // Выводим сообщение об ошибке
-                   alert(data.message);
+                   if (data.status === 'success') {
+                       // Авторизация прошла успешно, отображаем ID пользователя и перенаправляем
+                       $('#userId').text(data.id);
+                       $('#userIdDisplay').show();
+                       window.location.href = 'index.html'; // Перенаправление
+                   } else if (data.status === 'error') {
+                       alert(data.message);
+                   }
+               } catch (error) {
+                   console.error('Ошибка обработки ответа:', error);
+                   alert('Ошибка при обработке ответа от сервера.');
                }
+           },
+           error: function (xhr, status, error) {
+               console.error('Ошибка AJAX-запроса:', error);
+               alert('Произошла ошибка при подключении к серверу.');
            }
        });
    });
 });
 
 
+
 $(document).ready(function() {
    // Обработчик для кнопки "Зарегистрироваться"
-   $('.button button').click(function(event) {
+   $('#reg').click(function(event) {
        event.preventDefault(); // Предотвращаем отправку формы по умолчанию
 
        // Получаем значения из полей
@@ -53,7 +65,7 @@ $(document).ready(function() {
                const res = response;
                if (res.status === 'success') {
                    alert(res.message);
-                   window.location.href = 'main.html';
+                   window.location.href = 'index.php';
                } else {
                    alert(res.message);
                }

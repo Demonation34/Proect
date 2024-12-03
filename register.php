@@ -1,7 +1,7 @@
 <?php
 session_start();
 $host = 'example.local'; // измените на ваше имя хоста
-$db = 'test'; // имя вашей базы данных
+$db = 'BD'; // имя вашей базы данных
 $user = 'root'; // имя пользователя базы данных
 $pass = ''; // пароль к базе данных
 
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Проверяем, существует ли уже пользователь с таким логином
-    $stmt = $pdo->prepare('SELECT * FROM users WHERE login = :login');
+    $stmt = $pdo->prepare('SELECT * FROM `Персона` WHERE login = :login');
     $stmt->execute(['login' => $login]);
     $existingUser = $stmt->fetch();
 
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     // Сохраняем нового пользователя в базе данных
-    $stmt = $pdo->prepare('INSERT INTO users (login, password) VALUES (:login, :password)');
+    $stmt = $pdo->prepare('INSERT INTO `Персона` (login, password) VALUES (:login, :password)');
     $stmt->execute(['login' => $login, 'password' => $hashedPassword]);
 
     echo json_encode(['status' => 'success', 'message' => 'Регистрация успешна']);

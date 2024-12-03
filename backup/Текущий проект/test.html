@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schematic Control Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #schematic {
+            width: 100%;
+            max-width: 800px;
+        }
+        .section {
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+        }
+        #form {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function checkDispatcherConnection() {
+            document.getElementById("dispatcher-status").innerText = "Связь с диспетчером: установлено";
+        }
+
+        function checkValveStatus() {
+            let valvePosition = document.getElementById("valve-position").value;
+            if (valvePosition >= 50) {
+                alert("Valve opened 50%");
+                document.getElementById("next-step").style.display = "block";
+            }
+        }
+
+        function generateForm() {
+            let time = document.getElementById("time").value;
+            let length = document.getElementById("length").value;
+            document.getElementById("form-content").innerText = `Время: ${time}\nДлина штока: ${length}`;
+            document.getElementById("form").style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <h1>Schematic Control Panel</h1>
+
+    <div class="section">
+        <img id="schematic" src="css/screen1.png" alt="Schematic Image">
+    </div>
+
+    <div class="section">
+        <h2>Проверка включения задвижек</h2>
+        <p>Проверить включение на мнемосхеме задвижек на входе и выходе камеры СОД в местном режиме и дождаться 50% по штоку.</p>
+        <input type="number" id="valve-position" placeholder="Введите % открытия штока">
+        <button onclick="checkValveStatus()">Проверить статус задвижек</button>
+    </div>
+
+    <div class="section">
+        <h2>Проверка устойчивости связи с диспетчером</h2>
+        <p id="dispatcher-status">Связь с диспетчером: не установлено</p>
+        <button onclick="checkDispatcherConnection()">Проверить связь с диспетчером</button>
+    </div>
+
+    <div class="section" id="next-step" style="display:none;">
+        <h2>Контроль открытия/закрытия</h2>
+        <p>При достижении 50% открытия остановить и дождаться команды на следующий шаг в поле «Команда диспетчера», далее контроль открытия/закрытия согласно таблице в Приложении 1 ТЗ.</p>
+        <p>Сравнить время и длину штока с паспортными данными:</p>
+        <input type="text" id="time" placeholder="Введите время">
+        <input type="text" id="length" placeholder="Введите длину штока">
+        <button onclick="generateForm()">Сравнить и создать формуляр</button>
+    </div>
+
+    <div class="section" id="form">
+        <h2>Формуляр</h2>
+        <pre id="form-content"></pre>
+    </div>
+</body>
+</html>

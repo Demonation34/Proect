@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="js/js.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/css.css">
+<title>Проект</title>
+
+</head>
+<body>
+<!-- Burger Menu HTML -->
+<div id="burger-menu" onclick="openNav()">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+<!-- Overlay -->
+<div id="overlay" onclick="closeNav()"></div>
+
+<div id="side-menu">
+    <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <style>
+        #side-menu {
+            z-index: 9999;
+        }
+        #burger-menu {
+            z-index: 9999;
+        }
+        #overlay{
+            z-index: 9999;
+        }
+    </style>
+</div>
+
+<div id="main-container">
+    <div id="start-image-container">
+        <img id="start-image" src="Старт.png" alt="Start Image">
+        <div id="interface-container">
+            <style>
+                #main-image {
+                    width: 50%;
+                    height: 125%;
+                }
+            </style>
+            
+
+
+
+            
+           
+            
+            
+            <button id="Home"></button>
+            <button id="Next"></button>
+            
+            <div id="imageContainer" style="display: none;">
+                
+            </div>
+            
+        </div>
+    </div>
+    <button id="skip-button">Пропустить</button>
+</div>
+<div class="scene">
+    <img src="css/screen1.png" alt="screen1">
+</div>
+<script>
+document.getElementById("Next").addEventListener("click", function() {
+    window.location.href = "index1.html";
+});
+function openNav() {
+document.getElementById("side-menu").style.left = "0";
+document.getElementById("overlay").style.display = "block";
+}
+
+function closeNav() {
+document.getElementById("side-menu").style.left = "-250px";
+document.getElementById("overlay").style.display = "none";
+}
+// Клонируем кнопку перед её удалением
+document.getElementById("Home").addEventListener("click", function() {
+    window.location.href = "index.html";
+});
+document.getElementById("skip-button").addEventListener("click", function() {
+    window.location.href = "index2.html";
+});
+$(document).ready(function() {
+            $("#interface-container").show();
+        });
+</script>
+</body>
+</html>
